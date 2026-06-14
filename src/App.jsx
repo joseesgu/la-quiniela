@@ -28,14 +28,14 @@ function App() {
 
   const cargarDatos = async () => {
     try {
-      const resJugadores = await axios.get('http://localhost:8000/tabla-posiciones');
+      const resJugadores = await axios.get('https://quiniela-api-apqx.onrender.com/tabla-posiciones');
       setJugadores(resJugadores.data);
 
-      const resPartidos = await axios.get('http://localhost:8000/partidos');
+      const resPartidos = await axios.get('https://quiniela-api-apqx.onrender.com/partidos');
       setListaPartidos(resPartidos.data);
 
       // Cargar las predicciones detalladas de la fecha elegida
-      const resDiarias = await axios.get(`http://localhost:8000/predicciones-diarias?fecha=${fechaConsulta}`);
+      const resDiarias = await axios.get(`https://quiniela-api-apqx.onrender.com/predicciones-diarias?fecha=${fechaConsulta}`);
       setPrediccionesHoy(resDiarias.data);
     } catch (error) {
       toast.error("Error conectando con el servidor");
@@ -54,7 +54,7 @@ function App() {
     }
 
     try {
-      await axios.post(`http://localhost:8000/partidos/${partidoId}/resultado?goles_local=${golesLocal}&goles_visita=${golesVisita}`);
+      await axios.post(`https://quiniela-api-apqx.onrender.com/partidos/${partidoId}/resultado?goles_local=${golesLocal}&goles_visita=${golesVisita}`);
       toast.success('¡Resultado guardado y puntos actualizados!');
       setMostrarConfeti(true);
       setTimeout(() => setMostrarConfeti(false), 5000);
